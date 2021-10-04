@@ -1,0 +1,15 @@
+<main class="col-sm-12 col-md-12">
+  <form name="form">
+    <div style="display:flex;">
+      <input type="text" name="task" placeholder="Add a new task" [(ngModel)]="newTask" required="required" />
+      <button  class="btn btn-sm btn-primary btn-block" (click)="onAddTodoText()"  [disabled]="newTask===''">Add Task</button>
+    </div>
+  </form>
+  <ul>
+    <li   *ngFor="let task of todoList;index as i" [ngClass]="task.done?'completed':''" > <span>{{ task.title }}
+        <input type="checkbox" (click)="toggleTodoComplete(i)" id="{{task+i}}" [(ngModel)]="task.done"/>
+        <label for="{{task+i}}"></label></span></li>
+  </ul>
+  <p class="all-complete" *ngIf="isListEmpty==true">All tasks have been completed.</p>
+<button (click)="onCompletingTask()">Clear completed tasks</button>
+</main>
